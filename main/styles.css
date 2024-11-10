@@ -1,0 +1,189 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Root Variables */
+:root {
+    --primary-color: #1e1e2f;
+    --secondary-color: #00bfff;
+    --accent-color: #ffcc00;
+    --text-color: #cccccc;
+    --background-color: #0a0a1a;
+    --section-color: #2a2a3c;
+    --card-background-color: #2a2a3c;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+/* Header / Navigation */
+header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+nav ul li a:hover {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+}
+
+/* Smooth Scroll for Anchor Links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Text Section */
+#text {
+    height: 100vh;
+    background: var(--primary-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#text .content {
+    max-width: 600px;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: pop 1.5s ease-out forwards;
+}
+
+#text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    animation: fadeIn 1s ease-out forwards 0.3s;
+}
+
+#text p {
+    font-size: 1.2rem;
+    animation: fadeIn 1.75s ease-out forwards 1s;
+}
+
+/* Sections Styling */
+section {
+    padding: 50px 20px;
+    text-align: center;
+    margin-top: 0;
+    min-height: 100vh;
+}
+
+section:nth-of-type(1) {
+    background-color: var(--section-color);
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+section p {
+    font-size: 1.1rem;
+}
+
+/* Card Styling */
+.card {
+    position: relative;
+    background-color: var(--card-background-color);
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+/* Link Styling */
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Contact Cards */
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #text h1 {
+        font-size: 2rem;
+    }
+
+    #text p,
+    section p {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Keyframes for Animations */
+@keyframes pop {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
