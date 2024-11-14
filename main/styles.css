@@ -8,7 +8,7 @@
 /* Root Variables */
 :root {
     --primary-color: #1e1e2f;
-    --secondary-color: #00bfff;
+ --secondary-color: #00bfff;
     --accent-color: #ffcc00;
     --text-color: #cccccc;
     --background-color: #0a0a1a;
@@ -18,7 +18,7 @@
 
 /* Body Styling */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -47,11 +47,12 @@ nav ul li a {
     text-decoration: none;
     font-size: 1.2rem;
     padding: 10px;
-    transition: background-color 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
     background-color: var(--secondary-color);
+    color: #fff;
     border-radius: 5px;
 }
 
@@ -148,8 +149,39 @@ a {
     color: #fff;
 }
 
-/* Contact Cards */
+/* Contact Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 20px auto;
+}
 
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0080ff;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -164,6 +196,10 @@ a {
 
     section h2 {
         font-size: 2rem;
+    }
+
+    form {
+        width: 90%;
     }
 }
 
