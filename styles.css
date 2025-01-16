@@ -84,12 +84,12 @@ html {
     font-size: 3rem;
     margin-bottom: 20px;
     color: var(--accent-color);
-    animation: fadeIn 1s ease-out forwards 0.3s;
+    /*animation: fadeIn 1s ease-out forwards 0.3s;*/
 }
 
 #text p {
     font-size: 1.2rem;
-    animation: fadeIn 1.75s ease-out forwards 1s;
+    /*animation: fadeIn 1.75s ease-out forwards 1s;*/
 }
 
 /* Sections Styling */
