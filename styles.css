@@ -82,14 +82,14 @@ html {
 
 #text .content #first{
     opacity: 0;
-    animation: pop 1.5s ease-in-out forwards;
+    animation: pop 2s ease-in-out forwards;
     animation-delay: 1.5s;
 }
 
 #text .content #second{
     opacity: 0;
-    animation: pop 1.5s ease-out forwards;
-    animation-delay: 2.5s;
+    animation: pop 2s ease-out forwards;
+    animation-delay: 3s;
 }
 
 #text h1{
