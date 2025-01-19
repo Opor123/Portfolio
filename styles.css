@@ -80,7 +80,19 @@ html {
     animation: pop 1.5s ease-out forwards;
 }
 
-#text h1 {
+#text .content #first{
+    opacity: 0;
+    animation: pop 1.5s ease-in-out forwards;
+    animation-delay: 1.5s;
+}
+
+#text .content #second{
+    opacity: 0;
+    animation: pop 1.5s ease-out forwards;
+    animation-delay: 2.5s;
+}
+
+#text h1{
     font-size: 3rem;
     margin-bottom: 20px;
     color: var(--accent-color);
@@ -221,5 +233,14 @@ form button:hover {
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    100%{
+        opacity: 1;
+    }
+    0%{
+        opacity: 0;
     }
 }
