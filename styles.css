@@ -75,33 +75,31 @@ html {
 #text .content {
     max-width: 600px;
     padding: 20px;
-    opacity: 0;
     transform: translateY(50px);
-    animation: pop 1.5s ease-out forwards;
+
+    animation: fadeIn .5s ease-in .5s forwards;
 }
 
 #text .content #first{
-    opacity: 0;
-    animation: pop 2s ease-in-out forwards;
-    animation-delay: 1.5s;
+
+    animation: BounceBack 2s ease .5s forwards;
 }
 
 #text .content #second{
-    opacity: 0;
-    animation: pop 2s ease-out forwards;
-    animation-delay: 3s;
+
+    animation: BounceBack 2s ease 1s forwards;
 }
 
 #text h1{
     font-size: 3rem;
     margin-bottom: 20px;
     color: var(--accent-color);
-    /*animation: fadeIn 1s ease-out forwards 0.3s;*/
+
 }
 
 #text p {
     font-size: 1.2rem;
-    /*animation: fadeIn 1.75s ease-out forwards 1s;*/
+
 }
 
 /* Sections Styling */
@@ -216,31 +214,101 @@ form button:hover {
 }
 
 /* Keyframes for Animations */
-@keyframes pop {
-    0% {
-        opacity: 0;
-        transform: translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes BounceBack {
+	0% {
+		animation-timing-function: ease-in;
+		opacity: 0;
+		transform: scale(7);
+	}
+
+	38% {
+		animation-timing-function: ease-out;
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	55% {
+		animation-timing-function: ease-in;
+		transform: scale(1.5);
+	}
+
+	72% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	81% {
+		animation-timing-function: ease-in;
+		transform: scale(1.24);
+	}
+
+	89% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	95% {
+		animation-timing-function: ease-in;
+		transform: scale(1.04);
+	}
+
+	100% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+}
+@keyframes BounceOut {
+	0% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	5% {
+		animation-timing-function: ease-in;
+		transform: scale(1.04);
+	}
+
+	15% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	25% {
+		animation-timing-function: ease-in;
+		transform: scale(1.24);
+	}
+
+	38% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	52% {
+		animation-timing-function: ease-in;
+		transform: scale(1.5);
+	}
+
+	70% {
+		animation-timing-function: ease-out;
+		transform: scale(1);
+	}
+
+	85% {
+		opacity: 1;
+	}
+
+	100% {
+		animation-timing-function: ease-in;
+		opacity: 0;
+		transform: scale(7);
+	}
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    100%{
-        opacity: 1;
-    }
     0%{
         opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }
