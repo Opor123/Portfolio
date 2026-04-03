@@ -22,6 +22,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* Base font size for fluid typography */
+    font-size: clamp(14px, 1.5vw, 16px);
 }
 
 /* Body Styling */
@@ -38,22 +40,30 @@ nav {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(212, 165, 116, 0.2);
-    padding: 1rem 2rem;
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: clamp(0.5rem, 2vw, 1rem);
     align-items: center;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
 }
 
+@media (min-width: 768px) {
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
 .nav-brand {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: 700;
     background: linear-gradient(135deg, var(--saturn-gold), var(--accent-orange));
     -webkit-background-clip: text;
@@ -64,15 +74,17 @@ nav {
 
 nav ul {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    gap: clamp(0.75rem, 2vw, 2rem);
     list-style: none;
+    justify-content: center;
 }
 
 nav ul li a {
     color: var(--text-color);
     text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    padding: clamp(0.3rem, 1vw, 0.5rem) clamp(0.5rem, 1.5vw, 1rem);
     position: relative;
     transition: color 0.3s ease;
 }
@@ -97,18 +109,18 @@ nav ul li a:hover::after {
     width: 80%;
 }
 
-nav.scrolled{
-    padding:0.5rem 2rem;
+nav.scrolled {
+    padding: clamp(0.25rem, 1vw, 0.5rem) clamp(1rem, 4vw, 2rem);
     background: rgba(15, 15, 30, 0.95);
 }
 
-nav.scrolled .nav-brand{
-    font-size:1.2rem;
+nav.scrolled .nav-brand {
+    font-size: clamp(1.1rem, 2.5vw, 1.2rem);
 }
 
 /* Hero Section */
 #text {
-    height: 100vh;
+    min-height: 100vh;
     background: linear-gradient(135deg, var(--primary-color) 0%, #0a0a1a 100%);
     color: var(--text-color);
     display: flex;
@@ -117,13 +129,14 @@ nav.scrolled .nav-brand{
     text-align: center;
     position: relative;
     overflow: hidden;
+    padding: clamp(80px, 15vh, 120px) clamp(15px, 4vw, 20px) clamp(40px, 8vh, 60px);
 }
 
 #text::before {
     content: '';
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: min(500px, 80vw);
+    height: min(500px, 80vw);
     background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
     top: -250px;
     right: -250px;
@@ -133,8 +146,8 @@ nav.scrolled .nav-brand{
 #text::after {
     content: '';
     position: absolute;
-    width: 400px;
-    height: 400px;
+    width: min(400px, 70vw);
+    height: min(400px, 70vw);
     background: radial-gradient(circle, rgba(230, 146, 92, 0.1) 0%, transparent 70%);
     bottom: -200px;
     left: -200px;
@@ -167,8 +180,8 @@ nav.scrolled .nav-brand{
 
 #text h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 3.5rem;
-    margin-bottom: 20px;
+    font-size: clamp(1.75rem, 5vw, 3.5rem);
+    margin-bottom: clamp(15px, 3vh, 20px);
     background: linear-gradient(135deg, var(--saturn-gold), var(--accent-orange));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -177,26 +190,35 @@ nav.scrolled .nav-brand{
 }
 
 #text p {
-    font-size: 1.3rem;
-    margin-bottom: 30px;
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    margin-bottom: clamp(20px, 4vh, 30px);
     color: var(--saturn-cream);
     animation: fadeInUp 1s ease 0.4s both;
 }
 
 .cta-buttons {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     justify-content: center;
     animation: fadeInUp 1s ease 0.6s both;
 }
 
+@media (min-width: 480px) {
+    .cta-buttons {
+        flex-direction: row;
+    }
+}
+
 .btn {
-    padding: 12px 30px;
+    padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 30px);
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    text-align: center;
 }
 
 .btn-primary {
@@ -222,7 +244,7 @@ nav.scrolled .nav-brand{
 
 /* Sections */
 section {
-    padding: 100px 20px;
+    padding: clamp(60px, 15vh, 100px) clamp(15px, 4vw, 20px);
     text-align: center;
     min-height: 100vh;
     display: flex;
@@ -236,7 +258,7 @@ section:nth-of-type(even) {
 
 section h2 {
     font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
+    font-size: clamp(1.75rem, 5vw, 3rem);
     margin-bottom: 15px;
     background: linear-gradient(135deg, var(--saturn-gold), var(--accent-orange));
     -webkit-background-clip: text;
@@ -245,28 +267,28 @@ section h2 {
 }
 
 section > p {
-    font-size: 1.2rem;
-    margin-bottom: 50px;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: clamp(30px, 6vh, 50px);
     color: var(--text-secondary);
 }
 
 /* Card Container */
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: clamp(20px, 3vw, 30px);
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
     align-items: start;
-    width:100%;
+    width: 100%;
 }
 
 /* Enhanced Cards */
 .card {
     position: relative;
     background: linear-gradient(135deg, rgba(42, 42, 69, 0.8) 0%, rgba(31, 31, 58, 0.6) 100%);
-    padding: 30px;
+    padding: clamp(15px, 3vw, 30px);
     border-radius: 20px;
     border: 1px solid rgba(212, 165, 116, 0.15);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -274,18 +296,17 @@ section > p {
     display: flex;
     flex-direction: column;
     height: 100%;
-
 }
 
-.card>*:not(last-child){
+.card > *:not(last-child) {
     margin-bottom: 12px;
 }
 
-.card>p{
-    flex:1;
+.card > p {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap:8px;
+    gap: 8px;
 }
 
 .card::before {
@@ -299,8 +320,6 @@ section > p {
     transform: scaleX(0);
     transition: transform 0.4s ease;
 }
-
-
 
 .card:hover {
     transform: translateY(-10px);
@@ -316,6 +335,7 @@ section > p {
     color: var(--saturn-gold);
     margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
 }
 
 .card img {
@@ -326,8 +346,8 @@ section > p {
     margin: 15px 0;
     transition: transform 0.4s ease;
     border: 1px solid rgba(212, 165, 116, 0.1);
-     min-height: 150px;
-    max-height: 300px;
+    min-height: clamp(140px, 20vw, 150px);
+    max-height: clamp(200px, 40vw, 300px);
 }
 
 .card:hover img {
@@ -338,7 +358,8 @@ section > p {
     text-align: left;
     line-height: 1.8;
     color: var(--saturn-cream);
-    flex-grow:1;
+    flex-grow: 1;
+    font-size: clamp(0.95rem, 1.5vw, 1rem);
 }
 
 .card strong {
@@ -358,15 +379,15 @@ section > p {
 /* Contact Cards */
 .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: clamp(15px, 2.5vw, 20px);
     max-width: 800px;
     margin: 30px auto;
 }
 
 .contact-card {
     background: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(230, 146, 92, 0.05) 100%);
-    padding: 30px;
+    padding: clamp(20px, 4vw, 30px);
     border-radius: 15px;
     border: 1px solid rgba(212, 165, 116, 0.2);
     transition: all 0.3s ease;
@@ -392,8 +413,8 @@ section > p {
 /* Certificate Section */
 .certificate-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+    gap: clamp(20px, 3vw, 30px);
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
@@ -401,7 +422,7 @@ section > p {
 
 .certificate-card {
     background: linear-gradient(135deg, rgba(42, 42, 69, 0.8) 0%, rgba(31, 31, 58, 0.6) 100%);
-    padding: 20px;
+    padding: clamp(15px, 3vw, 20px);
     border-radius: 20px;
     border: 1px solid rgba(212, 165, 116, 0.15);
     transition: all 0.4s ease;
@@ -423,184 +444,48 @@ section > p {
 
 .certificate-card img {
     max-width: 100%;
-    height:auto;
+    height: auto;
     border-radius: 12px;
 }
 
-.img-wrapper{
-    display:block;
-    margin:auto;
-    width:50%;
+.img-wrapper {
+    display: block;
+    margin: auto;
+    width: clamp(80%, 10vw + 50%, 50%);
 }
 
 /* Footer */
 footer {
     text-align: center;
-    padding: 30px;
+    padding: clamp(20px, 4vh, 30px);
     background: rgba(15, 15, 30, 0.9);
     border-top: 1px solid rgba(212, 165, 116, 0.2);
     color: var(--saturn-cream);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-     nav {
-        flex-direction: column;
-        gap: 1rem;
-        padding: 0.75rem 1rem;
-    }
-
-    nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.75rem;
-    }
-
-    nav ul li a {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.75rem;
-    }
-
-    #text {
-        min-height: 100vh;
-        padding: 80px 20px 40px;
-    }
-
-    #text h1 {
-        font-size: 2rem;
-    }
-
-    #text p {
-        font-size: 1rem;
-    }
-
-    section {
-        padding: 60px 15px;
-        min-height: auto;
-    }
-
-    section h2 {
-        font-size: 2rem;
-    }
-
-    section > p {
-        font-size: 1rem;
-        margin-bottom: 30px;
-    }
-
-    .card-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 10px;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    .card h3 {
-        font-size: 1.25rem;
-    }
-
-    .card p {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-
-    .card img {
-        height: 160px;
-    }
-
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .certificate-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 10px;
-    }
-
-    .certificate-card {
-        padding: 20px;
-    }
-
-    .img-wrapper {
-        width: 80%;
-    }
-
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .card-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .certificate-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #text h1 {
-        font-size: 3rem;
-    }
-
-    section h2 {
-        font-size: 2.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-brand {
-        font-size: 1.25rem;
-    }
-
-    nav ul li a {
-        font-size: 0.85rem;
-        padding: 0.3rem 0.5rem;
-    }
-
-    #text h1 {
-        font-size: 1.75rem;
-    }
-
-    #text p {
-        font-size: 0.95rem;
-    }
-
-    section h2 {
-        font-size: 1.75rem;
-    }
-
-    .card {
-        padding: 15px;
-    }
-
-    .card h3 {
-        font-size: 1.15rem;
-    }
-
-    .card img {
-        height: 140px;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-}
-
+/* Minimal media queries only for layout changes */
 @media (min-width: 1400px) {
     .card-container {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+/* Custom Scrollbar - Webkit browsers only */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-left: 1px solid rgba(212, 165, 116, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--saturn-gold), var(--accent-orange));
+    border-radius: 6px;
+    border: 2px solid var(--background-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--saturn-gold);
 }
