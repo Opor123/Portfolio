@@ -3,6 +3,17 @@ const scrollProgress = document.querySelector('.scroll-progress');
 const cursorGlow = document.querySelector('.cursor-glow');
 const revealItems = document.querySelectorAll('.reveal');
 
+revealItems.forEach((item) => {
+  const parent = item.parentElement;
+  const siblings = parent
+    ? Array.from(parent.children).filter((child) => child.classList.contains('reveal'))
+    : [];
+  const staggerIndex = siblings.indexOf(item);
+  if (staggerIndex > 0) {
+    item.style.transitionDelay = `${Math.min(staggerIndex, 6) * 90}ms`;
+  }
+});
+
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -62,6 +73,50 @@ if (cursorGlow) {
     cursorGlow.style.left = `${event.clientX}px`;
     cursorGlow.style.top = `${event.clientY}px`;
   });
+}
+
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const counterElements = document.querySelectorAll('[data-counter]');
+
+function animateCounter(element) {
+  const target = parseFloat(element.getAttribute('data-count-to') || '0');
+  const suffix = element.getAttribute('data-suffix') || '';
+
+  if (prefersReducedMotion) {
+    element.textContent = `${target}${suffix}`;
+    return;
+  }
+
+  const duration = 1200;
+  const start = performance.now();
+
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const value = Math.round(target * eased);
+    element.textContent = `${value}${suffix}`;
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
+
+if (counterElements.length) {
+  const counterObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+
+  counterElements.forEach((element) => counterObserver.observe(element));
 }
 
 document.querySelectorAll('[data-magnetic]').forEach((card) => {
@@ -198,8 +253,56 @@ document.querySelectorAll('[data-close-modal], .modal-close').forEach((element) 
   element.addEventListener('click', closeModal);
 });
 
+const printResumeBtn = document.getElementById('print-resume');
+if (printResumeBtn) {
+  printResumeBtn.addEventListener('click', () => window.print());
+}
+
+const toast = document.getElementById('toast');
+let toastTimeout;
+
+function showToast(message) {
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('is-visible');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('is-visible'), 2400);
+}
+
+document.querySelectorAll('[data-copy-email]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const email = button.getAttribute('data-copy-email');
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      showToast('Email copied to clipboard');
+    } catch (error) {
+      showToast(`Copy failed — email is ${email}`);
+    }
+  });
+});
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && modal) {
     closeModal();
+  }
+});
+
+const easterEgg = document.getElementById('easter-egg');
+const secretCode = 'sudo';
+let keyBuffer = '';
+
+document.addEventListener('keydown', (event) => {
+  if (!easterEgg || event.key.length > 1) return;
+
+  keyBuffer = (keyBuffer + event.key).slice(-secretCode.length).toLowerCase();
+
+  if (keyBuffer === secretCode) {
+    easterEgg.classList.add('is-visible');
+    easterEgg.setAttribute('aria-hidden', 'false');
+    setTimeout(() => {
+      easterEgg.classList.remove('is-visible');
+      easterEgg.setAttribute('aria-hidden', 'true');
+    }, 2600);
   }
 });
